@@ -31,16 +31,16 @@
     "tooltip",
     "animation"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Emmanuel Owolabi <owoemma59@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/react-star-rating-component.git"
+    "url": "https://github.com/nametheman/react-star-rating-component.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/react-star-rating-component/issues"
+    "url": "https://github.com/nametheman/react-star-rating-component/issues"
   },
-  "homepage": "https://github.com/yourusername/react-star-rating-component#readme",
+  "homepage": "https://github.com/nametheman/react-star-rating-component#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -56,10 +56,11 @@
     "eslint": "^8.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "rimraf": "^5.0.0",
     "rollup": "^3.0.0",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rimraf": "^5.0.0",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   },
   "engines": {
