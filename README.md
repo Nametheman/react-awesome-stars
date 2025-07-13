@@ -16,20 +16,20 @@ A flexible and customizable star rating component for React applications with Ty
 ## Installation
 
 ```bash
-npm install react-star-rating-component
+npm install react-awesome-stars
 ```
 
 or
 
 ```bash
-yarn add react-star-rating-component
+yarn add react-awesome-stars
 ```
 
 ## Basic Usage
 
 ```tsx
 import React, { useState } from "react";
-import { StarRating } from "react-star-rating-component";
+import { StarRating } from "react-awesome-stars";
 
 function App() {
   const [rating, setRating] = useState(0);
@@ -47,7 +47,7 @@ function App() {
 
 ```tsx
 import React, { useState } from "react";
-import { StarRating } from "react-star-rating-component";
+import { StarRating } from "react-awesome-stars";
 
 function AdvancedExample() {
   const [rating, setRating] = useState(3.5);
