@@ -1,5 +1,5 @@
 {
-  "name": "react-star-rating-component",
+  "name": "react-awesome-stars",
   "version": "1.0.0",
   "description": "A flexible and customizable star rating component for React applications",
   "main": "dist/index.js",
@@ -35,12 +35,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nametheman/react-star-rating-component.git"
+    "url": "https://github.com/nametheman/react-awesome-stars.git"
   },
   "bugs": {
-    "url": "https://github.com/nametheman/react-star-rating-component/issues"
+    "url": "https://github.com/nametheman/react-awesome-stars/issues"
   },
-  "homepage": "https://github.com/nametheman/react-star-rating-component#readme",
+  "homepage": "https://github.com/nametheman/react-awesome-stars#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
