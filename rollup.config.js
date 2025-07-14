@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { dts } from "rollup-plugin-dts";
 import { readFileSync } from "fs";
+import postcss from "rollup-plugin-postcss";
 
 const packageJson = JSON.parse(readFileSync("./package.json", "utf8"));
 
@@ -29,6 +30,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
+      postcss(),
     ],
     external: ["react", "react-dom"],
   },
