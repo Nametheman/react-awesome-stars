@@ -1,6 +1,6 @@
 {
   "name": "react-awesome-stars",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A flexible and customizable star rating component for React applications",
   "main": "dist/index.js",
