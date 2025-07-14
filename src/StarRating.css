@@ -1,0 +1,89 @@
+/* Root container */
+.star-rating-root {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stars container */
+.star-rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Individual star */
+.star-rating-star {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.15s;
+  vertical-align: middle;
+}
+
+.star-rating-star-hovered {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.star-rating-star-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Half star hit areas */
+.star-rating-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+  cursor: pointer;
+}
+.star-rating-half.left {
+  left: 0;
+}
+.star-rating-half.right {
+  right: 0;
+}
+
+/* SVGs */
+.star-rating-svg {
+  display: block;
+  pointer-events: none;
+}
+.star-rating-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.star-rating-filled {
+  position: relative;
+  z-index: 1;
+}
+
+/* Filled star overlay */
+.star-rating-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Value display */
+.star-rating-value {
+  margin-left: 8px;
+  color: #555;
+  font-size: 0.95em;
+  font-weight: 500;
+  user-select: none;
+}
+
+/* Accessibility: focus ring */
+.star-rating-star:focus {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}

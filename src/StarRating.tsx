@@ -1,35 +1,21 @@
 import React, { useState, useCallback, useMemo } from "react";
+import "./StarRating.css";
 
 export interface StarRatingProps {
-  /** Current rating value (0-maxRating) */
   rating?: number;
-  /** Maximum number of stars */
   maxRating?: number;
-  /** Whether the rating is interactive */
   interactive?: boolean;
-  /** Callback fired when rating changes */
   onRatingChange?: (rating: number) => void;
-  /** Size of the stars */
   size?: "xs" | "sm" | "md" | "lg" | "xl" | number;
-  /** Color of filled stars */
   fillColor?: string;
-  /** Color of empty stars */
   emptyColor?: string;
-  /** Color of stars on hover */
   hoverColor?: string;
-  /** Show half stars */
   allowHalf?: boolean;
-  /** Show rating number next to stars */
   showRating?: boolean;
-  /** Custom class name */
   className?: string;
-  /** Whether to show tooltips on hover */
   showTooltip?: boolean;
-  /** Custom tooltip labels */
   tooltipLabels?: string[];
-  /** Animation duration in milliseconds */
   animationDuration?: number;
-  /** Disabled state */
   disabled?: boolean;
 }
 
@@ -55,13 +41,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
 
   const starSize = useMemo(() => {
     if (typeof size === "number") return size;
-    const sizes = {
-      xs: 16,
-      sm: 20,
-      md: 24,
-      lg: 32,
-      xl: 40,
-    };
+    const sizes = { xs: 16, sm: 20, md: 24, lg: 32, xl: 40 };
     return sizes[size];
   }, [size]);
 
@@ -98,7 +78,6 @@ export const StarRating: React.FC<StarRatingProps> = ({
       Math.max(currentRating - (starIndex - 1), 0),
       1
     );
-
     const starColor = isHovered
       ? hoverColor
       : fillPercentage > 0
@@ -108,22 +87,28 @@ export const StarRating: React.FC<StarRatingProps> = ({
     return (
       <div
         key={starIndex}
-        className={`relative inline-block cursor-pointer transition-all duration-${animationDuration} ${
-          disabled ? "opacity-50 cursor-not-allowed" : ""
-        } ${isHovered ? "scale-110" : ""}`}
+        className={`star-rating-star${
+          disabled ? " star-rating-star-disabled" : ""
+        }${isHovered ? " star-rating-star-hovered" : ""}`}
         style={{
           width: starSize,
           height: starSize,
+          transition: `transform ${animationDuration}ms`,
         }}
         onMouseEnter={() => handleMouseEnter(starIndex)}
         onMouseLeave={handleMouseLeave}
         onClick={() => handleClick(starIndex)}
         title={showTooltip ? tooltipLabels[starIndex - 1] : undefined}
+        tabIndex={interactive && !disabled ? 0 : -1}
+        role={interactive ? "button" : undefined}
+        aria-label={
+          showTooltip ? tooltipLabels[starIndex - 1] : `Rate ${starIndex}`
+        }
       >
         {allowHalf && interactive && (
           <>
             <div
-              className="absolute top-0 left-0 w-1/2 h-full z-10 cursor-pointer"
+              className="star-rating-half left"
               onMouseEnter={() => handleMouseEnter(starIndex, true)}
               onClick={(e) => {
                 e.stopPropagation();
@@ -131,7 +116,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
               }}
             />
             <div
-              className="absolute top-0 right-0 w-1/2 h-full z-10 cursor-pointer"
+              className="star-rating-half right"
               onMouseEnter={() => handleMouseEnter(starIndex, false)}
               onClick={(e) => {
                 e.stopPropagation();
@@ -140,21 +125,19 @@ export const StarRating: React.FC<StarRatingProps> = ({
             />
           </>
         )}
-
         {/* Empty star background */}
         <svg
           width={starSize}
           height={starSize}
           viewBox="0 0 24 24"
           fill={emptyColor}
-          className="absolute top-0 left-0"
+          className="star-rating-svg star-rating-empty"
         >
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
-
         {/* Filled star overlay */}
         <div
-          className="absolute top-0 left-0 overflow-hidden"
+          className="star-rating-fill"
           style={{
             width: `${fillPercentage * 100}%`,
             transition: `width ${animationDuration}ms ease`,
@@ -165,6 +148,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
             height={starSize}
             viewBox="0 0 24 24"
             fill={starColor}
+            className="star-rating-svg star-rating-filled"
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
@@ -174,14 +158,13 @@ export const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <div className={`inline-flex items-center gap-1 ${className}`}>
-      <div className="flex items-center gap-0.5">
+    <div className={`star-rating-root${className ? ` ${className}` : ""}`}>
+      <div className="star-rating-stars">
         {Array.from({ length: maxRating }, (_, i) => renderStar(i + 1))}
       </div>
-
       {showRating && (
         <span
-          className="ml-2 text-sm font-medium text-gray-700"
+          className="star-rating-value"
           style={{ fontSize: Math.max(starSize * 0.5, 12) }}
         >
           {currentRating.toFixed(allowHalf ? 1 : 0)} / {maxRating}
